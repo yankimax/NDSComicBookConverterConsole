@@ -56,6 +56,19 @@ namespace NDSComicBookConverterConsole
                 }
             }
         }
+        public static void CreateArchive(string inputPath, string output, bool force = false)
+        {
+            if(File.Exists(output) && force) {
+                Console.WriteLine($"Файл {output} уже существует. Удаляю.");
+                File.Delete(output);
+            }
+            else if (File.Exists(output) && !force)
+            {
+                Console.WriteLine($"Файл {output} уже существует. Не трогаю.");
+                return;
+            }
+            ZipFile.CreateFromDirectory(inputPath, output);
+        }
 
     }
 }

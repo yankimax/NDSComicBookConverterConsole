@@ -5,6 +5,7 @@
         public static string InputDirectory { get; set; } = "source";
         public static string OutputDirectory { get; set; } = "cbds";
         public static string UnpackedDirectory { get; set; } = "unpacked";
+        public static int ImageQuality { get; set; } = 90;
 
     }
 }

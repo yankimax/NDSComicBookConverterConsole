@@ -4,14 +4,14 @@
     {
         public static void Main(string[] args)
         {
+            //RemoveCBDSStructure(Config.OutputDirectory);
             Archive.FindAndExtract(Config.InputDirectory, Config.UnpackedDirectory);
             Console.WriteLine($"Готово.\nРезультат доступен в каталоге: {Path.GetFullPath(Config.UnpackedDirectory)}");
-            CreateCBDSStructure(Config.OutputDirectory);
-            BookINI.CreateBookINIFile();
-            //RemoveCBDSStructure(Config.OutputDirectory);
+            //CreateCBDSStructure(Config.OutputDirectory);
+            var iE = new ImageEditor(Config.UnpackedDirectory);
         }
 
-        static void CreateCBDSStructure(string cbdsDirectory)
+        public static void CreateCBDSStructure(string cbdsDirectory)
         {
             var directories = new[] { "IMAGE", "NAME", "SMALL_N", "SMALL_R", "THMB_N", "THMB_R" };
             foreach (var directory in directories)
@@ -20,7 +20,7 @@
                 Console.WriteLine($"Создал каталог: {Path.Combine(cbdsDirectory, "_temp", directory)}");
             }
         }
-        static void RemoveCBDSStructure(string cbdsDirectory)
+        public static void RemoveCBDSStructure(string cbdsDirectory)
         {
             Directory.Delete(Path.Combine(cbdsDirectory, "_temp"), true);
             Console.WriteLine($"Удалил каталог: {Path.Combine(cbdsDirectory, "_temp")}");

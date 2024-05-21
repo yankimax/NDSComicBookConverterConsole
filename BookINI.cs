@@ -64,5 +64,15 @@
         {
             File.WriteAllLines(fileName, data.Select(z => $"{z.Key}={z.Value}"));
         }
+        public static void CreateNameFiles(string namesPath)
+        {
+            for (int i = 1; i <= PagesCount; i++) {
+                Console.WriteLine(Path.Combine(namesPath, i + ".txt"));
+                using (var sw = File.CreateText(Path.Combine(namesPath, i + ".txt")))
+                {
+                    sw.WriteLine(i.ToString());
+                }
+            }
+        }
     }
 }
